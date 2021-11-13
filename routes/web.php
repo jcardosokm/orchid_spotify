@@ -33,3 +33,6 @@ Route::get('/', function () {
     return redirect('all/popular/artists');
 });
 
+Route::get('login',array('as'=>'login',function(){
+    return redirect('all/popular/artists');
+
