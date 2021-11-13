@@ -34,11 +34,6 @@ use Tabuna\Breadcrumbs\Trail;
 |
 */
 
-//something new
-
-
-//Route::get('login/spotify', 'App\Http\Controllers\SpotifyLoginController@redirect');
-
 // Main
 Route::screen('/main', PlatformScreen::class)
     ->name('platform.main');

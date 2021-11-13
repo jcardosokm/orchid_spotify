@@ -24,8 +24,8 @@ Route::get('login/spotify/callback','App\Http\Controllers\SpotifyLoginController
 Route::screen('all/popular/artists', MostPopularArtists::class);
 Route::screen('all/popular/tracks', MostPopularTracks::class);
 
-Route::screen('me/popular/artists', MyPopularArtists::class);
-Route::screen('me/popular/tracks', MyPopularTracks::class);
+Route::screen('me/popular/artists', MyPopularArtists::class)->middleware('auth');;
+Route::screen('me/popular/tracks', MyPopularTracks::class)->middleware('auth');;
 
 Route::get('tracks/edit/visibility/{id}', [TrackController::class, 'visibility']);
 
