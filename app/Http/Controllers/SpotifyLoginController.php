@@ -35,11 +35,6 @@ class SpotifyLoginController extends Controller
             'client_secret' => env('SPOTIFY_CLIENT_SECRET'),
         ]);
 
-        json_decode($response)->access_token;
-        json_decode($response)->refresh_token;
-        json_decode($response)->scope;
-
-        //dd(json_decode($response));
         $profile = Http::withToken(json_decode($response)->access_token)->get('https://api.spotify.com/v1/me');
 
         if ($user = User::where('uri', json_decode($profile)->uri)->first()) {
@@ -82,6 +77,6 @@ class SpotifyLoginController extends Controller
             Auth::login($user);
         }
 
-        return redirect('/all/popular/artists');
+        return redirect('/me/popular/artists');
     }
 }
