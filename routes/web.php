@@ -29,10 +29,11 @@ Route::screen('me/popular/tracks', MyPopularTracks::class)->middleware('auth');;
 
 Route::get('tracks/edit/visibility/{id}', [TrackController::class, 'visibility']);
 
-Route::get('/', function () {
-    return redirect('all/popular/artists');
-});
-
 Route::get('login',array('as'=>'login',function(){
     return redirect('all/popular/artists');
+    
+Route::get('/', function () {
+    return redirect('all/popular/artists');
+    
+});
 
