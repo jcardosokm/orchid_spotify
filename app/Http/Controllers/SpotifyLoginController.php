@@ -77,6 +77,6 @@ class SpotifyLoginController extends Controller
             Auth::login($user);
         }
 
-        return redirect('/me/popular/artists');
+        return redirect('/me/popular/tracks');
     }
 }

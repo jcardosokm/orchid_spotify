@@ -22,7 +22,7 @@ class TrackListLayout extends Table
     public function columns(): array
     {
         return [
-            TD::make('artist_id', 'Artist')
+            TD::make('artist_id', '')
                 ->width('100')
                 ->render(function ($track) {
                     return '<img class="mw-100 rounded img-fluid" src="' .

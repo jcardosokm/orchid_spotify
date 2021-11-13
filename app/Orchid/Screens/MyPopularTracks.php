@@ -4,10 +4,10 @@ namespace App\Orchid\Screens;
 
 use App\Models\Track;
 use App\Orchid\Layouts\TrackListLayout;
+use Illuminate\Support\Env;
 use Orchid\Screen\Screen;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Screen\Actions\Button;
-use Symfony\Component\HttpFoundation\Request;
+use Orchid\Screen\Actions\Link;
 
 class MyPopularTracks extends Screen
 {
@@ -42,6 +42,8 @@ class MyPopularTracks extends Screen
     public function commandBar(): array
     {
         return [
+            //to be changed
+            Link::make('Back')->href(Env('APP_URL')),
         ];
     }
 
@@ -57,5 +59,9 @@ class MyPopularTracks extends Screen
             TrackListLayout::class
             ,
         ];
+    }
+
+    public function backbtn(){
+        return redirect()->back();
     }
 }
