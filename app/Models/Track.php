@@ -56,7 +56,7 @@ class Track extends Model
     {
         $query->selectRaw('artists.name as artist_name, tracks.id, tracks.name as track_name, tracks.artist_id, tracks.visible, COUNT(tracks.artist_id) as count')
             ->join('artists', 'artists.id', '=', 'tracks.artist_id')
-            ->groupBy('tracks.id', 'tracks.name', 'tracks.artist_id', 'tracks.visible')
+            ->groupBy('artist_name','tracks.id', 'tracks.name', 'tracks.artist_id', 'tracks.visible')
             ->orderBy('count', 'desc')
             ->get();
 
