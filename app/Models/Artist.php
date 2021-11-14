@@ -41,7 +41,6 @@ class Artist extends Model
      * @var array
      */
     protected $allowedFilters = [
-        'name',
         'genres',
     ];
 

@@ -24,11 +24,7 @@ class Track extends Model
     ];
 
     protected $allowedFilters = [
-        'name',
-        'artist_name',
-        'track_name',
         'genres',
-        'visible',
     ];
 
     /**
