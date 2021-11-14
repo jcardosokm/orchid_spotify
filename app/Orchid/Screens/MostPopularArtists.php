@@ -27,7 +27,7 @@ class MostPopularArtists extends Screen
     {
         return [
             'artistsChart' => Track::active()->limit(10)->countForGroup('artists.name')->sortBy('count')->toChart(),
-            'artists' => Artist::popular()->orderBy('count','desc')->filters()->paginate(),
+            'artists' => Artist::popular()->filters()->paginate(),
         ];
     }
 

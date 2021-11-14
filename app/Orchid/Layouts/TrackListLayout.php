@@ -32,20 +32,16 @@ class TrackListLayout extends Table
                         '">';
                 }),
 
-            TD::make('artists_name', 'Artist')
+            TD::make('artist_name', 'Artist')
                 ->sort()
                 ->width('450')
                 ->render(function ($track) {
                     return $track->artist_name;
                 }),
 
-            TD::make('name', 'Track name')
+            TD::make('track_name', 'Track name')
                 ->sort()
-                ->filter(Input::make())
-                ->width('450')
-                ->render(function ($track) {
-                    return $track->track_name;
-                }),
+                ->width('450'),
 
             TD::make('genres', 'Genres')
                 ->sort()

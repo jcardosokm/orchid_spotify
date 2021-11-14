@@ -26,8 +26,9 @@ class Track extends Model
     protected $allowedFilters = [
         'name',
         'artist_name',
-        'artist_id',
-        'genres'
+        'track_name',
+        'genres',
+        'visible',
     ];
 
     /**
@@ -38,8 +39,10 @@ class Track extends Model
     protected $allowedSorts = [
         'name',
         'artist_name',
+        'track_name',
         'genres',
         'visible',
+        'count'
     ];
 
     public function artists()
@@ -57,7 +60,7 @@ class Track extends Model
         $query->selectRaw('artists.name as artist_name, tracks.name as track_name, tracks.artist_id, tracks.visible, COUNT(tracks.name) as count')
             ->join('artists', 'artists.id', '=', 'tracks.artist_id')
             ->groupBy('artist_name', 'tracks.name', 'tracks.artist_id','tracks.visible')
-            ->orderBy('count', 'desc')
+            //->orderBy('count', 'desc')
             ->get();
         return $query;
     }

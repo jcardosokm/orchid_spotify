@@ -24,7 +24,7 @@ class MyPopularArtists extends Screen
     public function query(): array
     {
         return [
-            'artists' => Artist::popular()->where('user_id', Auth::user()->id)->orderBy('count','desc')->filters()->paginate(),
+            'artists' => Artist::popular()->where('user_id', Auth::user()->id)->filters()->paginate(),
         ];
     }
 
