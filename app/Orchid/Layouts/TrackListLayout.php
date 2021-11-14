@@ -8,6 +8,8 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 use Orchid\Screen\Fields\Input;
 use App\Models\Artist;
+use App\Models\Track;
+use Illuminate\Support\Facades\Auth;
 
 class TrackListLayout extends Table
 {
@@ -57,12 +59,13 @@ class TrackListLayout extends Table
                 ->sort()
                 ->width('200')
                 ->render(function ($track) {
+                    $trackid=Track::where('name','=',$track->track_name)->where('user_id','=',Auth::id())->value('id');
                     if ($track->visible == 0) {
-                        return '<a href="/tracks/edit/visibility/' . $track->id . '">
+                        return '<a href="/tracks/edit/visibility/' . $trackid . '">
                     <button type="button" class="btn btn-danger btn-sm">
                     Hidden - Click to Show</button></a>';
                     } else {
-                        return '<a href="/tracks/edit/visibility/' . $track->id . '">
+                        return '<a href="/tracks/edit/visibility/' . $trackid . '">
                     <button type="button" class="btn btn-success btn-sm">
                     Displayed - Click to Hide</button></a>';
                     }
