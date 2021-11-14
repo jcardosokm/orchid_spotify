@@ -48,7 +48,7 @@ class AllTrackListLayout extends Table
                 ->width('450')
                 ->filter(Input::make())
                 ->render(function ($track) {
-                    return Artist::where('id', $track->artist_id)->get()->first()->genres;
+                    return implode(",", json_decode(Artist::where('id', $track->artist_id)->get()->first()->genres));
                 }),
 
             TD::make('count', 'Count')

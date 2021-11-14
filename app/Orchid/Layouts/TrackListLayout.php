@@ -35,7 +35,6 @@ class TrackListLayout extends Table
                 ->width('450')
                 ->render(function ($track) {
                     return $track->artist_name;
-                    //return Artist::where('id', $track->artist_id)->get()->first()->name;
                 }),
 
             TD::make('name', 'Track name')
@@ -51,7 +50,7 @@ class TrackListLayout extends Table
                 ->filter(Input::make())
                 ->width('450')
                 ->render(function ($track) {
-                    return Artist::where('id', $track->artist_id)->get()->first()->genres;
+                    return implode(",",json_decode(Artist::where('id', $track->artist_id)->get()->first()->genres));
                 }),
 
             TD::make('visible', 'Visibility')

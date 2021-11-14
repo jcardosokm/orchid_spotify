@@ -66,8 +66,7 @@ class SpotifyLoginController extends Controller
                     $artistinfo = Http::withToken($user->access_token)
                         ->get('https://api.spotify.com/v1/artists/' . $track->artists[0]->id);
                     
-                    
-                    $artist = new Artist(['name' => $track->artists[0]->name, 'image' => json_decode($artistinfo)->images[0]->url, 'genres' => json_decode($artistinfo)->genres[0], 'uri' => $track->artists[0]->uri]);
+                    $artist = new Artist(['name' => $track->artists[0]->name, 'image' => json_decode($artistinfo)->images[0]->url, 'genres' => json_encode(json_decode($artistinfo)->genres), 'uri' => $track->artists[0]->uri]);
                     $artist->save();
                     $track = new Track(['name' => $track->name, 'artist_id' => $artist->id, 'user_id' => auth()->user()->id, 'uri' => $track->uri]);
                     $track->save();
