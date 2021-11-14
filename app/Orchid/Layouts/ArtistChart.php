@@ -11,7 +11,7 @@ class ArtistChart extends Chart
      *
      * @var string
      */
-    protected $title = 'Artist Chart';
+    protected $title = 'Artist Chart TOP 10';
 
     /**
      * Available options:
