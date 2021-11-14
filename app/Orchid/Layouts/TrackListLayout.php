@@ -57,7 +57,6 @@ class TrackListLayout extends Table
                 ->sort()
                 ->width('200')
                 ->render(function ($track) {
-                    //dd($track->id);
                     if ($track->visible == 0) {
                         return '<a href="/tracks/edit/visibility/' . $track->id . '">
                     <button type="button" class="btn btn-danger btn-sm">
@@ -67,10 +66,6 @@ class TrackListLayout extends Table
                     <button type="button" class="btn btn-success btn-sm">
                     Displayed - Click to Hide</button></a>';
                     }
-
-                    /*return CheckBox::make('visible')
-                ->value($track->visible)
-                ->route('/track/edit', $track);*/
                 }),
         ];
     }

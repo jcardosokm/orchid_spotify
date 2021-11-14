@@ -30,21 +30,15 @@ class AllArtistListLayout extends Table
             TD::make('name', 'Name')
                 ->sort()
                 ->width('450'),
-            /*
-                ->render(function (Artist $artist) {
-                    return $artist->get('name');
-                }), 
-                */
 
             TD::make('genres', 'Genres')
+                ->width('450')
                 ->sort()
                 ->filter(Input::make())
-                ->width('450')
-            /*
-                ->render(function (Artist $artist) {
-                    return $artist->get('genres');
-                })
-                */,
+                ->render(function ($artist) {
+                    return implode(",", json_decode($artist->genres));
+                }),
+                
             TD::make('count', 'Count')
                 ->sort()
                 ->width('450'),

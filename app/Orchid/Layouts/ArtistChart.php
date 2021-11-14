@@ -32,4 +32,6 @@ class ArtistChart extends Chart
      */
     protected $target = 'artistsChart';
 
+    protected $height = 450;
+
 }
