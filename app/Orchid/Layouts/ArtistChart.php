@@ -20,7 +20,7 @@ class ArtistChart extends Chart
      *
      * @var string
      */
-    protected $type = 'percentage';
+    protected $type = 'bar';
 
     /**
      * Data source.
