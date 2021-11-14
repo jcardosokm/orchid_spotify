@@ -54,12 +54,11 @@ class Track extends Model
 
     public function scopePopular($query)
     {
-        $query->selectRaw('artists.name as artist_name, tracks.id, tracks.name as track_name, tracks.artist_id, tracks.visible, COUNT(tracks.artist_id) as count')
+        $query->selectRaw('artists.name as artist_name, tracks.name as track_name, tracks.artist_id, tracks.visible, COUNT(tracks.name) as count')
             ->join('artists', 'artists.id', '=', 'tracks.artist_id')
-            ->groupBy('artist_name','tracks.id', 'tracks.name', 'tracks.artist_id', 'tracks.visible')
+            ->groupBy('artist_name', 'tracks.name', 'tracks.artist_id','tracks.visible')
             ->orderBy('count', 'desc')
             ->get();
-
         return $query;
     }
 
