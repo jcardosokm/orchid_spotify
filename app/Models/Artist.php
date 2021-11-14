@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Filters\Filterable;
+use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 
 class Artist extends Model
 {
-    use AsSource, Filterable;
+    use AsSource, Filterable, Chartable;
 
     protected $fillable = [
         'name',

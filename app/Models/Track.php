@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 use Orchid\Filters\Filterable;
+use Orchid\Metrics\Chartable;
 
 class Track extends Model
 {
-    use AsSource, Filterable;
+    use AsSource, Filterable, Chartable;
     /**
      * The attributes that are mass assignable.
      *
@@ -57,6 +58,15 @@ class Track extends Model
             ->join('artists', 'artists.id', '=', 'tracks.artist_id')
             ->groupBy('tracks.id', 'tracks.name', 'tracks.artist_id', 'tracks.visible')
             ->orderBy('count', 'desc')
+            ->get();
+
+        return $query;
+    }
+
+    public function scopeActive($query)
+    {
+        $query->selectRaw('tracks.*, artists.*')
+            ->join('artists', 'artists.id', '=', 'tracks.artist_id')
             ->get();
 
         return $query;

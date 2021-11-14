@@ -3,7 +3,9 @@
 namespace App\Orchid\Screens;
 
 use App\Models\Artist;
+use App\Models\Track;
 use App\Orchid\Layouts\AllArtistListLayout;
+use App\Orchid\Layouts\ArtistChart;
 use Orchid\Screen\Screen;
 
 
@@ -24,6 +26,7 @@ class MostPopularArtists extends Screen
     public function query(): array
     {
         return [
+            'artistsChart' => Track::active()->countForGroup('artists.name')->toChart(),
             'artists' => Artist::popular()->filters()->defaultSort('name')->paginate(),
         ];
     }
@@ -47,6 +50,7 @@ class MostPopularArtists extends Screen
     {
         return [
             AllArtistListLayout::class,
+            ArtistChart::class,
         ];
     }
 }
