@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\AsSource;
+use Orchid\Filters\Filterable;
 
 class Track extends Model
 {
-    use HasFactory;
+    use AsSource, Filterable;
     /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +19,25 @@ class Track extends Model
         'artist_id',
         'user_id',
         'uri',
+        'visible',
+    ];
+
+    protected $allowedFilters = [
+        'name',
+        'artist_name',
+        'artist_id',
+        'genres'
+    ];
+
+    /**
+     * The attributes for which can use sort in url.
+     *
+     * @var array
+     */
+    protected $allowedSorts = [
+        'name',
+        'artist_name',
+        'genres',
         'visible',
     ];
 
@@ -33,14 +53,12 @@ class Track extends Model
 
     public function scopePopular($query)
     {
-        $query->selectRaw('tracks.id, tracks.name, tracks.artist_id, tracks.visible, COUNT(tracks.artist_id) as count')
-        ->join('artists', 'artists.id', '=', 'tracks.artist_id')
-        ->groupBy('tracks.id','tracks.name','tracks.artist_id', 'tracks.visible')
-        ->orderBy('count', 'desc')
-        ->get();
+        $query->selectRaw('artists.name as artist_name, tracks.id, tracks.name as track_name, tracks.artist_id, tracks.visible, COUNT(tracks.artist_id) as count')
+            ->join('artists', 'artists.id', '=', 'tracks.artist_id')
+            ->groupBy('tracks.id', 'tracks.name', 'tracks.artist_id', 'tracks.visible')
+            ->orderBy('count', 'desc')
+            ->get();
 
         return $query;
-        
     }
-
 }

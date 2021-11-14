@@ -6,7 +6,7 @@ namespace App\Orchid\Layouts;
 
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
-use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Fields\Input;
 use App\Models\Artist;
 
 class TrackListLayout extends Table
@@ -22,7 +22,7 @@ class TrackListLayout extends Table
     public function columns(): array
     {
         return [
-            TD::make('artist_id', '')
+            TD::make('', '')
                 ->width('100')
                 ->render(function ($track) {
                     return '<img class="mw-100 rounded img-fluid" src="' .
@@ -30,25 +30,32 @@ class TrackListLayout extends Table
                         '">';
                 }),
 
-            TD::make('artist_id', 'Artist')
+            TD::make('artists_name', 'Artist')
+                ->sort()
                 ->width('450')
                 ->render(function ($track) {
-                    return Artist::where('id', $track->artist_id)->get()->first()->name;
+                    return $track->artist_name;
+                    //return Artist::where('id', $track->artist_id)->get()->first()->name;
                 }),
 
             TD::make('name', 'Track name')
+                ->sort()
+                ->filter(Input::make())
                 ->width('450')
                 ->render(function ($track) {
-                    return $track->name;
+                    return $track->track_name;
                 }),
 
             TD::make('genres', 'Genres')
+                ->sort()
+                ->filter(Input::make())
                 ->width('450')
                 ->render(function ($track) {
                     return Artist::where('id', $track->artist_id)->get()->first()->genres;
                 }),
 
             TD::make('visible', 'Visibility')
+                ->sort()
                 ->width('200')
                 ->render(function ($track) {
                     //dd($track->id);

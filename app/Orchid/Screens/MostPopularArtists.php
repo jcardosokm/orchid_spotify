@@ -24,7 +24,7 @@ class MostPopularArtists extends Screen
     public function query(): array
     {
         return [
-            'artists' => Artist::popular()->get(),
+            'artists' => Artist::popular()->filters()->defaultSort('name')->paginate(),
         ];
     }
 

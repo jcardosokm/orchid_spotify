@@ -6,6 +6,7 @@ namespace App\Orchid\Layouts;
 
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
+use Orchid\Screen\Fields\Input;
 
 class AllArtistListLayout extends Table
 {
@@ -27,6 +28,7 @@ class AllArtistListLayout extends Table
                 }),
 
             TD::make('name', 'Name')
+                ->sort()
                 ->width('450'),
             /*
                 ->render(function (Artist $artist) {
@@ -35,6 +37,8 @@ class AllArtistListLayout extends Table
                 */
 
             TD::make('genres', 'Genres')
+                ->sort()
+                ->filter(Input::make())
                 ->width('450')
             /*
                 ->render(function (Artist $artist) {
@@ -42,6 +46,7 @@ class AllArtistListLayout extends Table
                 })
                 */,
             TD::make('count', 'Count')
+                ->sort()
                 ->width('450'),
         ];
     }

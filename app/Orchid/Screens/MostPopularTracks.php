@@ -25,7 +25,7 @@ class MostPopularTracks extends Screen
     {
 
         return [
-            'tracks' => Track::popular()->where('visible', true)->get(),
+            'tracks' => Track::popular()->where('visible', true)->filters()->defaultSort('id')->paginate(),
         ];
     }
 

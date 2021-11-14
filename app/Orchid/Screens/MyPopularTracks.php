@@ -29,7 +29,7 @@ class MyPopularTracks extends Screen
     {
 
         return [
-            'tracks' => Track::popular()->where('user_id', Auth::user()->id)->get(),
+            'tracks' => Track::popular()->where('user_id', Auth::user()->id)->filters()->defaultSort('name')->paginate(),
         ];
     }
 

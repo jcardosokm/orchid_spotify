@@ -6,7 +6,7 @@ namespace App\Orchid\Layouts;
 
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
-use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Fields\Input;
 use App\Models\Artist;
 
 class AllTrackListLayout extends Table
@@ -30,25 +30,29 @@ class AllTrackListLayout extends Table
                         '">';
                 }),
 
-            TD::make('artist_id', 'Artist')
+            TD::make('artist_name', 'Artist')
+                ->sort()
                 ->width('450')
                 ->render(function ($track) {
                     return Artist::where('id', $track->artist_id)->get()->first()->name;
                 }),
 
-            TD::make('name', 'Track name')
+            TD::make('track_name', 'Track name')
+                ->sort()
                 ->width('450')
                 ->render(function ($track) {
-                    return $track->name;
+                    return $track->track_name;
                 }),
 
             TD::make('genres', 'Genres')
                 ->width('450')
+                ->filter(Input::make())
                 ->render(function ($track) {
                     return Artist::where('id', $track->artist_id)->get()->first()->genres;
                 }),
 
             TD::make('count', 'Count')
+                ->sort()
                 ->width('450')
                 ->render(function ($track) {
                     return $track->count;
